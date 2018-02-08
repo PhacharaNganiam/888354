@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+	function toSearch(){
+			var count = 0;
+			var text = document.getElementById("inputtext").value;
+			var searchs = document.getElementById("search").value;
+			var check = document.getElementsByName("case");
+			for (var i = 0; i < check.length; i++) {
+				if(check[i].checked){
+					check = check[i].value;
+				}
+			}
+			var ary = text.split(" ");
+			for(var i=0;i<ary.length;i++){
+				if (check == "no") {
+					ary[i]=ary[i].toUpperCase();
+					searchs=searchs.toUpperCase()
+					if(ary[i].search(searchs) > -1){
+						count++;
+					}
+				}else{
+					if (ary[i].search(searchs) > -1) {
+					count++;
+					}
+				}
+				
+			}
+			console.log(ary);
+			document.getElementById("count").innerHTML = count;
+	}
+</script>
+
+	<center>
+		<h1>Ex2 - Search String Non Sensitive Case</h1>
+		<hr>
+		<p>Text Input: 
+		<textarea id="inputtext"></textarea>
+		</p>
+		<p>Sensitive Case : 
+	        <input type="radio" name="case" value="yes" >Yes
+	        <input type="radio" name="case" value="no">No
+	    </p>
+	    <p>Search :
+	    	<input type="text" name="search" id="search">
+	    </p>
+	    <button onclick="toSearch()">search</button>
+        <p> Result for Search : <p> <b id="count"></b>
+	</center>
+</body>
+</html>
